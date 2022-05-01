@@ -8,14 +8,15 @@ import { Context } from "../store/Context";
 
 const SideBar = (props) => {
   const {store, actions} = useContext(Context);
-  const ref = useRef(null);
+  const sideBarRef = useRef(null); //ref for sideBar
 
   useEffect(() => {
-    if (store.showNav) ref.current.focus();
-  },[store.showNav])
+    //if navBar shown(mobile device), set focus on the aside element. 
+    if (store.showNav) sideBarRef.current.focus();
+  },[store.showNav]);
 
   return (
-    <aside className={`sidebar ${store.showNav ? 'show' : ''}`} tabIndex={store.showNav ? 0 : null} ref={ref} onBlur={() => {
+    <aside className={`sidebar ${store.showNav ? 'show' : ''}`} tabIndex={store.showNav ? 0 : null} ref={sideBarRef} onBlur={() => {
       actions.setShowNav();
     }}>
       <header className="sidebar-header">

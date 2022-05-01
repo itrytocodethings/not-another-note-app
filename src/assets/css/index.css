@@ -15,7 +15,6 @@ aside.sidebar {
   min-width: 80%;
   background-color: var(--sidebar-bg);
   border-right: 1px solid lightgray;
-  height: 100vh;
   z-index: 1;
 }
 
