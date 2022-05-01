@@ -13,9 +13,9 @@ const SideBar = (props) => {
   useEffect(() => {
     if (store.showNav) ref.current.focus();
   },[store.showNav])
-  
+
   return (
-    <aside className={`sidebar ${store.showNav ? 'show' : ''}`} tabIndex={store.showNav ? 0 : ''} ref={ref} onBlur={() => {
+    <aside className={`sidebar ${store.showNav ? 'show' : ''}`} tabIndex={store.showNav ? 0 : null} ref={ref} onBlur={() => {
       actions.setShowNav();
     }}>
       <header className="sidebar-header">
