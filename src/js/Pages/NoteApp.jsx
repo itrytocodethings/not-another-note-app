@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {Context} from '../store/Context'
 
 //styles
@@ -7,12 +7,18 @@ import '../../assets/css/notes.css'
 // Components
 import SideBar from "../Components/Sidebar";
 import MainContent from "../Components/MainContent";
+import NotesCard from "../Components/NotesCard";
 
 //icons
 import {BsFilePlus} from 'react-icons/bs';
 
 export const NoteApp = () => {
   const {store, actions} = useContext(Context);
+  const [notes, setNotes] = useState([])
+
+  useEffect(() => {
+    setNotes(store.notes);
+  })
   return (
     <div className="app-container">
       <div className="content d-flex">
@@ -24,9 +30,11 @@ export const NoteApp = () => {
               <button className="btn btn-primary"><BsFilePlus /></button>
             </div>
           </header>
-          <div className="container-fluid">
+          <div className="notes container-fluid">
             <div className="notes-content">
-              hello world
+              <div className="row gx-4 gy-4">
+              {notes ? notes.length > 0 ? notes.map((note) => <NotesCard note={note} />): 'You have no notes' : null}
+              </div>
             </div>
           </div>
         </MainContent>

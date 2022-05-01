@@ -4,20 +4,23 @@
   --alt-bg: #ffffff;
 }
 
-div.app-container .content {
-  height: 100vh !important;
+body {
+  overflow: hidden;
 }
 
 aside.sidebar {
+  min-width: 200px;
   max-width: 300px;
   background-color: var(--sidebar-bg);
   display: none;
   border-right: 1px solid lightgray;
+  height: 100vh;
 }
 
 main.main-content {
   background-color: var(--main-bg);
   flex: 1 1 auto;
+  height: 100vh;
 }
 
 @media (min-width: 800px) {
