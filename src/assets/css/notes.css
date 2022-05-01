@@ -1,0 +1,10 @@
+.notes-header {
+  height: 73.59px !important;
+  border-bottom: 1px solid lightgray;
+}
+.notes-header button {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  padding: .2em;
+}

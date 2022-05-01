@@ -1,3 +1,8 @@
+header.sidebar-header {
+  height: 73.59px !important;
+  border-bottom: 1px solid lightgray;
+}
+
 nav.main-nav span {
   margin-left: 10px;
 }
@@ -48,11 +53,22 @@ p {
   border-radius: 10px;
 }
 
-.sidebar-content,
 .sidebar {
   height: 100vh;
+  flex-direction: column;
 }
 
+.sidebar {
+  height: 100%;
+}
+
+.sidebar .container-fluid {
+  flex: 1 1 auto;
+}
+
+.sidebar-content {
+  height: 100%;
+}
 .sidebar-content h3 {
   padding: 0 16px;
 }

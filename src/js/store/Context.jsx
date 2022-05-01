@@ -30,18 +30,7 @@ export const ContextWrapper = (props) => {
       })
     }
   }))
-
-  console.log(state)
-  // const [store, setStore] = useState({
-  //   default: 'hello world',
-  //   maybeanArray: [1, 2,3, 4, 5],
-  //   users: [{name: 'Wayne'}, {name: 'John'}]
-  // });
-  // const [actions, setActions] = useState({
-  //   getAction: () => console.log('hello world'),
-  //   addUser: (userName) => {
-  //   }
-  // });
+  
   return (
     <Context.Provider value={state}>
       {props.children}
