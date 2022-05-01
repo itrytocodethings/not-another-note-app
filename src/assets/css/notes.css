@@ -1,6 +1,5 @@
 .notes {
-  height: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 .notes-content {
   padding: 30px;
