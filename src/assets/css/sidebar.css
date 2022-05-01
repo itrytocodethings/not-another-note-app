@@ -1,0 +1,60 @@
+nav.main-nav span {
+  margin-left: 10px;
+}
+
+nav.main-nav a{
+  color: inherit !important;
+  font-size: 1.5em;
+}
+nav.main-nav a span {
+  font-size: .6em;
+}
+
+div.user div.user-container div.img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 0.5em;
+  border: 1px solid lightgray;
+}
+div.img {
+  position: relative;
+}
+div.img::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: green;
+  bottom: 5px;
+  right: 7px;
+  border-radius: 100%;
+  border: 1px solid var(--sidebar-bg);
+}
+
+p {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.main-nav .nav-link {
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  background-color: rgb(225, 225, 225);
+  border-radius: 10px;
+}
+
+.sidebar-content,
+.sidebar {
+  height: 100vh;
+}
+
+.sidebar-content h3 {
+  padding: 0 16px;
+}
+
+

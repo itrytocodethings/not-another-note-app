@@ -1,0 +1,27 @@
+:root {
+  --sidebar-bg: #f8f8f9;
+  --main-bg: #fdfdfd;
+  --alt-bg: #ffffff;
+}
+
+div.app-container .row {
+  height: 100vh !important;
+}
+
+aside.sidebar {
+  max-width: 300px;
+  background-color: var(--sidebar-bg);
+  display: none;
+  border-right: 1px solid lightgray;
+}
+
+main.main-content {
+  background-color: var(--main-bg);
+  flex: 1 1 auto;
+}
+
+@media (min-width: 800px) {
+  aside.sidebar {
+    display: block;
+  }
+}
