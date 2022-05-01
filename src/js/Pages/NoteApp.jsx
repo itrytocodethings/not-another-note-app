@@ -16,19 +16,20 @@ import { BiMenu } from "react-icons/bi";
 export const NoteApp = () => {
   const { store, actions } = useContext(Context);
   const [notes, setNotes] = useState([]);
-
   useEffect(() => {
     setNotes(store.notes);
   });
   return (
     <div className="app-container">
       <div className="content d-flex">
-        <SideBar />
+        <SideBar/>
         <MainContent>
           <header className="notes-header">
             <div className="notes-header-content py-3 px-3 d-flex justify-content-between">
               <div className="d-flex">
-                <button className="btn btn-primary btn-sidebar me-2"><BiMenu /></button>
+                <button className="btn btn-primary btn-sidebar me-2" onClick={()=> {
+                  actions.setShowNav();
+                }}><BiMenu /></button>
                 <h3>Notes</h3>
               </div>
               <button className="btn btn-primary">

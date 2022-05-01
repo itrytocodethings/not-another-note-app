@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
 import { BiHomeSmile } from "react-icons/bi";
 import { CgNotes, CgHome } from "react-icons/cg";
 import defaultPic from "../../assets/img/blank.png";
 import "../../assets/css/sidebar.css";
+import { Context } from "../store/Context";
 
-const SideBar = () => {
+const SideBar = (props) => {
+  const {store, actions} = useContext(Context);
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${store.showNav ? 'show' : ''}`}>
       <header className="sidebar-header">
         <div className="sidebar-header-content px-3 py-3">
           <h3>Hello, World</h3>

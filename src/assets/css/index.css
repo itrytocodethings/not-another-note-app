@@ -12,12 +12,15 @@ aside.sidebar {
   visibility: hidden;
   position: absolute;
   display: flex;
-  min-width: 200px;
-  max-width: 300px;
+  min-width: 80%;
   background-color: var(--sidebar-bg);
   border-right: 1px solid lightgray;
   height: 100vh;
   z-index: 1;
+}
+
+aside.sidebar.show {
+  visibility: visible !important;
 }
 
 main.main-content {
@@ -32,5 +35,6 @@ main.main-content {
     position: static;
     height: 100vh;
     visibility: visible;
+    min-width: 200px !important;
   }
 }
