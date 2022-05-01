@@ -9,12 +9,15 @@ body {
 }
 
 aside.sidebar {
+  visibility: hidden;
+  position: absolute;
+  display: flex;
   min-width: 200px;
   max-width: 300px;
   background-color: var(--sidebar-bg);
-  display: none;
   border-right: 1px solid lightgray;
   height: 100vh;
+  z-index: 1;
 }
 
 main.main-content {
@@ -26,5 +29,8 @@ main.main-content {
 @media (min-width: 800px) {
   aside.sidebar {
     display: flex;
+    position: static;
+    height: 100vh;
+    visibility: visible;
   }
 }
