@@ -12,7 +12,23 @@
   0 20px 1px -9px rgba(0,0,0,0.15);
   /* Padding for demo purposes */
 }
+.note-card div.dropdown.note-card-menu {
+  position: absolute !important;
+  right: 5px;
+  top: 5px;
+}
 
+.dropdown-toggle {
+  background-color: transparent !important;
+  color: black !important;
+  border: 1px solid lightgray;
+  border: none;
+  padding: 0;
+}
+
+.dropstart .dropdown-toggle::before{
+  display: none;
+}
 .note-card h5:focus-visible {
   outline: none;
 }
@@ -20,6 +36,6 @@
 .card-text {
   overflow: hidden;
   display: -webkit-box; 
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }

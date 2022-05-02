@@ -7,6 +7,7 @@ const Layout = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<NoteApp />}></Route>
+        <Route path="/editor" element={<NoteApp />}></Route>
       </Routes>
     </BrowserRouter>
   )

@@ -15,6 +15,10 @@
   padding: .2em;
 }
 
+.notes.container-fluid {
+  max-width: 1200px;
+}
+
 @media (min-width: 800px) {
   button.btn-sidebar {
     display: none !important;

@@ -17,7 +17,7 @@ export const NoteApp = () => {
   const { store, actions } = useContext(Context);
   const [notes, setNotes] = useState([]);
   useEffect(() => {
-    setNotes(store.notes);
+    setNotes(store.users[0].notes);
   });
   return (
     <div className="app-container">
@@ -42,7 +42,7 @@ export const NoteApp = () => {
               <div className="row gx-4 gy-4">
                 {notes
                   ? notes.length > 0
-                    ? notes.map((note) => <NotesCard note={note} />)
+                    ? notes.map((note, index) => <NotesCard note={note} index={index} />)
                     : "You have no notes"
                   : null}
               </div>

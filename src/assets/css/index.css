@@ -16,7 +16,7 @@ aside.sidebar {
   background-color: var(--sidebar-bg);
   border-right: 1px solid lightgray;
   min-height: -webkit-fill-available;
-  z-index: 1;
+  z-index: 2000;
 }
 
 aside.sidebar.show {
@@ -26,7 +26,7 @@ aside.sidebar.show {
 main.main-content {
   background-color: var(--main-bg);
   flex: 1 1 auto;
-  min-height: 100vh;
+  height: 100vh;
   overflow: auto;
 }
 

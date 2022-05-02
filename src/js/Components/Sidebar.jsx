@@ -8,17 +8,16 @@ import { Context } from "../store/Context";
 
 const SideBar = (props) => {
   const {store, actions} = useContext(Context);
-  const sideBarRef = useRef(null); //ref for sideBar
-
-  useEffect(() => {
-    //if navBar shown(mobile device), set focus on the aside element. 
-    if (store.showNav) sideBarRef.current.focus();
-  },[store.showNav]);
+  const sideBarRef = useRef(null);
+  const closeNav = () => {
+    actions.setShowNav();
+  }
 
   return (
-    <aside className={`sidebar ${store.showNav ? 'show' : ''}`} tabIndex={store.showNav ? 0 : null} ref={sideBarRef} onBlur={() => {
-      actions.setShowNav();
+    <div onClick={(e) => {
+      if (store.showNav && !sideBarRef.current.contains(e.target)) closeNav()
     }}>
+        <aside className={`sidebar ${store.showNav ? 'show' : ''}`} ref={sideBarRef}>
       <header className="sidebar-header">
         <div className="sidebar-header-content px-3 py-3">
           <h3>Hello, World</h3>
@@ -28,9 +27,13 @@ const SideBar = (props) => {
         <div className="sidebar-content d-flex flex-column justify-content-between py-3">
           <div>
             <nav class="nav main-nav flex-column">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link mb-2">
                 <CgNotes />
                 <span>Notes</span>
+              </NavLink>
+              <NavLink to="/editor" className="nav-link">
+                <CgNotes />
+                <span>Editor</span>
               </NavLink>
             </nav>
           </div>
@@ -45,6 +48,8 @@ const SideBar = (props) => {
         </div>
       </div>
     </aside>
+    <div id="side-overlay" className={`overlay ${store.showNav ? 'show':''}`}></div>
+    </div>
   );
 };
 
