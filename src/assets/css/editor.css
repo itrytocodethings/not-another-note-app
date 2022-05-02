@@ -9,3 +9,12 @@
   font-size: 1.5em;
   padding: .2em;
 }
+
+.editor-header-content {
+  height: 100%;
+}
+
+.editor-header a,
+.editor-header button {
+  
+}
