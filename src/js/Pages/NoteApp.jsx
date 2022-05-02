@@ -32,7 +32,7 @@ export const NoteApp = () => {
                 }}><BiMenu /></button>
                 <h3>Notes</h3>
               </div>
-              <button className="btn btn-primary">
+              <button className="btn btn-primary" onClick={() => {actions.newNote(1, 'test')}}>
                 <BsFilePlus />
               </button>
             </div>

@@ -31,10 +31,10 @@ const SideBar = (props) => {
                 <CgNotes />
                 <span>Notes</span>
               </NavLink>
-              <NavLink to="/editor" className="nav-link">
+              {/* <NavLink to="/editor" className="nav-link">
                 <CgNotes />
                 <span>Editor</span>
-              </NavLink>
+              </NavLink> */}
             </nav>
           </div>
           <div className="user">

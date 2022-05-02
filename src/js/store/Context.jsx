@@ -77,6 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       showNav: false,
       users: [
         {
+          id: 1,
           username: 'Wayne',
           notes: [
             {
@@ -160,6 +161,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       setShowNav: () => {
         let store = getStore();
         setStore({showNav: store.showNav ? false : true});
+      },
+      newNote: (userID, title, body=`<b>Hello</b> World`) => {
+        let notes = getStore().users.filter((user) => user.id == userID)[0].notes;
+        notes.push({
+          id: notes.length + 1,
+          title: title,
+          body: body
+        })
+        console.log(notes);
       }
     },
   };

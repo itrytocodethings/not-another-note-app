@@ -1,5 +1,5 @@
 .editor-header {
-  height: 73.59px !important;
+  height: 80.59px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -16,5 +16,24 @@
 
 .editor-header a,
 .editor-header button {
-  
+  margin-right: 5px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+}
+
+.editor-container,
+.editor-content {
+  height: 100%;
+}
+
+.editor-container main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.editor {
+  height: 100%;
+  max-width: 960px;
 }

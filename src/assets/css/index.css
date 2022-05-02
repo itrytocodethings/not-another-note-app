@@ -6,13 +6,14 @@
 
 body {
   overflow: hidden;
+  color: #343a40;
 }
 
 aside.sidebar {
   visibility: hidden;
   position: absolute;
   display: flex;
-  min-width: 80%;
+  min-width: 300px;
   background-color: var(--sidebar-bg);
   border-right: 1px solid lightgray;
   min-height: -webkit-fill-available;
@@ -36,6 +37,6 @@ main.main-content {
     position: static;
     height: 100vh;
     visibility: visible;
-    min-width: 200px !important;
+    min-width: 250px !important;
   }
 }

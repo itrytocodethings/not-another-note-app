@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import SideBar from "../Components/Sidebar";
 import MainContent from "../Components/MainContent";
 
@@ -9,8 +9,16 @@ import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const NoteEditor = () => {
+  const editor = useRef(null);
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    // editor.current.innerHTML = `<b>hello</b> world`
+  })
+
+  console.dir(editor.current);
   return (
-    <div className="app-container">
+    <div className="editor-container">
       <div className="content d-flex">
         <SideBar />
         <MainContent>
@@ -38,8 +46,9 @@ const NoteEditor = () => {
             </div>
           </header>
           <div className="editor container-fluid">
-            <div className="editor-content" contentEditable={true}>
-              hello world
+            <div className="editor-content py-3">
+              <div className="editor px-2" contentEditable ref={editor} onInput={() => setText(editor.current.innerHTML)}>
+              </div>
             </div>
           </div>
         </MainContent>
