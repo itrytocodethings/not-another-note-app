@@ -10,8 +10,6 @@ import {ContextWrapper} from "./store/Context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ContextWrapper>
-    <React.StrictMode>
       <Layout />
-    </React.StrictMode>
   </ContextWrapper>
 );

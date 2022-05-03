@@ -162,14 +162,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         let store = getStore();
         setStore({showNav: store.showNav ? false : true});
       },
-      newNote: (userID, title, body=`<b>Hello</b> World`) => {
-        let notes = getStore().users.filter((user) => user.id == userID)[0].notes;
+      newNote: (userID, title, body=`Hello world`) => {
+        let store = getStore();
+        let notes = store.notes
         notes.push({
           id: notes.length + 1,
           title: title,
           body: body
         })
-        console.log(notes);
+        setStore({notes: notes});
       }
     },
   };

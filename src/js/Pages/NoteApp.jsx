@@ -17,7 +17,7 @@ export const NoteApp = () => {
   const { store, actions } = useContext(Context);
   const [notes, setNotes] = useState([]);
   useEffect(() => {
-    setNotes(store.users[0].notes);
+    setNotes(store.notes);
   });
   return (
     <div className="app-container">
