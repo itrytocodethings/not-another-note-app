@@ -12,6 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 const NoteEditor = (props) => {
   const loc = useLocation();
   const note = loc.state;
+  //using ref because useState doesn't work with ContentEditable package. per docs use 'useRef' instead.
   const text = useRef(note.body);
 
   return (
