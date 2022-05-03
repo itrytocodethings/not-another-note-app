@@ -32,7 +32,7 @@ export const NoteApp = () => {
                 }}><BiMenu /></button>
                 <h3>Notes</h3>
               </div>
-              <button className="btn btn-primary" onClick={() => {actions.newNote('test')}}>
+              <button className="btn btn-primary" onClick={() => {actions.newNote()}}>
                 <BsFilePlus />
               </button>
             </div>
@@ -42,7 +42,7 @@ export const NoteApp = () => {
               <div className="row gx-4 gy-4">
                 {notes
                   ? notes.length > 0
-                    ? notes.map((note, index) => <NotesCard note={note} index={index} />)
+                    ? notes.map((note, index) => <NotesCard note={note} index={index} />).reverse()
                     : "You have no notes"
                   : null}
               </div>

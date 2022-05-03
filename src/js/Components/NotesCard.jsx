@@ -1,11 +1,11 @@
-import React, {useContext, useRef} from "react";
+import React, { useContext, useRef } from "react";
 import "../../assets/css/notecard.css";
 import { HiDotsVertical } from "react-icons/hi";
 import { Context } from "../store/Context";
 import { useNavigate } from "react-router-dom";
 
 const NotesCard = ({ note, index }) => {
-  const {actions} = useContext(Context);
+  const { actions } = useContext(Context);
   const cardTitle = useRef(null);
   const navigate = useNavigate();
   /* 
@@ -14,10 +14,10 @@ const NotesCard = ({ note, index }) => {
   */
   const checkTextLengh = (e) => {
     const max = 12;
-    if (cardTitle.current.innerText.length >= max && e.code != 'Backspace') {
+    if (cardTitle.current.innerText.length >= max && e.code != "Backspace") {
       e.preventDefault();
     }
-  }
+  };
 
   return (
     <div className="col-12 col-md-4">
@@ -35,7 +35,13 @@ const NotesCard = ({ note, index }) => {
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <button class="dropdown-item" href="#" onClick={() => navigate('/editor', {state:note})}>
+                <button
+                  class="dropdown-item"
+                  href="#"
+                  onClick={() =>
+                    navigate("/editor", { state: { note: note, index: index } })
+                  }
+                >
                   Edit
                 </button>
               </li>
@@ -57,7 +63,7 @@ const NotesCard = ({ note, index }) => {
           >
             {note.title}
           </h5>
-          <p class="card-text">{note.body}</p>
+          <p class="card-text">{note.plainText}</p>
         </div>
       </div>
     </div>

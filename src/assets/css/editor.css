@@ -1,6 +1,5 @@
 .editor-header {
-  height: 80.59px;
-  border-bottom: 1px solid lightgray;
+  height: 73.59px;
 }
 
 .editor-header button {
@@ -22,18 +21,33 @@
   color: inherit;
 }
 
-.editor-container,
+.editor-content {
+  padding-top: 5px !important;
+}
+
+/* .editor-container,
 .editor-content {
   height: 100%;
-}
+} */
 
 .editor-container main {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .editor {
-  height: 100%;
+  flex: 1 1 auto;
   max-width: 960px;
+}
+
+.editor.edit-field {
+  /* white-space: pre-wrap !important; */
+  min-height: 100vh;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.editor.edit-field:focus-visible{
+  outline: none;
 }
