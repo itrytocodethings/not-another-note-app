@@ -53,9 +53,14 @@ const NotesCard = ({ note, index }) => {
                 </button>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+              <button
+                  class="dropdown-item"
+                  href="#"
+                  //onClick moves to editor view and passes the note the user wants to edit along with the index of the note.
+                  onClick={() => actions.deleteNote(index)}
+                >
                   Delete
-                </a>
+                </button>
               </li>
             </ul>
           </div>

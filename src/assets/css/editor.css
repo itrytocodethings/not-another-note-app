@@ -9,10 +9,6 @@
   padding: .2em;
 }
 
-.editor-header-content {
-  height: 100%;
-}
-
 .editor-header a,
 .editor-header button {
   margin-right: 5px;
@@ -25,15 +21,9 @@
   padding-top: 5px !important;
 }
 
-/* .editor-container,
-.editor-content {
-  height: 100%;
-} */
-
 .editor-container main {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .editor {
@@ -42,8 +32,7 @@
 }
 
 .editor.edit-field {
-  /* white-space: pre-wrap !important; */
-  min-height: 100vh;
+  min-height: 90vh;
   border: 1px solid lightgray;
   border-radius: 5px;
 }

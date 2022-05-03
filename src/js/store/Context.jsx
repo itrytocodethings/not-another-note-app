@@ -4,8 +4,6 @@ export const Context = createContext();
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      demo: "demo",
-      testArr: [],
       notes: [
         {
           id: 1,
@@ -17,13 +15,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       showNav: false,
     },
     actions: {
-      example: () => {
-        console.log("hello");
-      },
-      addToArr: () => {
-        let store = getStore();
-        console.log(store);
-      },
       setShowNav: () => {
         let store = getStore();
         setStore({showNav: store.showNav ? false : true});
@@ -37,6 +28,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         let notes = getStore().notes;
         notes[noteIndex].body = text;
         if (plainText) notes[noteIndex].plainText = plainText; //plain text of note body without html tags.
+        setStore({notes: notes});
+      },
+      deleteNote: (noteIndex) => {
+        let notes = getStore().notes.filter((note, index) => index != noteIndex);
         setStore({notes: notes});
       },
       newNote: (title=`🤔 Title me`, body=`Hello 🌎`) => {
