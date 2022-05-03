@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       saveNote: (noteIndex, text, plainText=null) => {
         let notes = getStore().notes;
         notes[noteIndex].body = text;
-        if (plainText) notes[noteIndex].plainText = plainText;
+        if (plainText) notes[noteIndex].plainText = plainText; //plain text of note body without html tags.
         setStore({notes: notes});
       },
       newNote: (title=`🤔 Title me`, body=`Hello 🌎`) => {

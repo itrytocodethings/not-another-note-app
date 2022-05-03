@@ -1,13 +1,19 @@
+//react utils
 import React, { useState, useRef, useContext } from "react";
-import SideBar from "../Components/Sidebar";
-import MainContent from "../Components/MainContent";
-import ContentEditable from "react-contenteditable";
+import { Link, useLocation } from "react-router-dom";
 
+//styles/icons/etc
 import "../../assets/css/editor.css";
 import { IoArrowBack } from "react-icons/io5";
 import { BsEye, BsEyeSlash, BsInfoCircle } from "react-icons/bs";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
-import { Link, useLocation } from "react-router-dom";
+
+//components
+import SideBar from "../Components/Sidebar";
+import MainContent from "../Components/MainContent";
+import ContentEditable from "react-contenteditable";
+
+// store
 import { Context } from "../store/Context";
 
 const NoteEditor = (props) => {
@@ -51,11 +57,12 @@ const NoteEditor = (props) => {
                 className="editor edit-field px-2"
                 html={text.current}
                 onChange={(e) => {
-                  text.current = e.target.value;
-                  console.log(text.current);
+                  //sets text ref .current with what is input into the editor.
+                  text.current = e.target.value; 
                 }}
-                onBlur={(e) => {
-                  let plainText = e.target.innerText;
+                onBlur={(e) => { //when the editor is unFocus
+                  //using innerText to get value without HTML tags.
+                  let plainText = e.target.innerText; 
                   actions.saveNote(loc.state.index, text.current, plainText);
                 }}
               />

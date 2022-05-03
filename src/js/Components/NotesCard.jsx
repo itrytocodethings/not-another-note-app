@@ -1,8 +1,14 @@
+//react utils
 import React, { useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+//icons/styles/assests
 import "../../assets/css/notecard.css";
 import { HiDotsVertical } from "react-icons/hi";
+
+//store
 import { Context } from "../store/Context";
-import { useNavigate } from "react-router-dom";
+
 
 const NotesCard = ({ note, index }) => {
   const { actions } = useContext(Context);
@@ -38,8 +44,9 @@ const NotesCard = ({ note, index }) => {
                 <button
                   class="dropdown-item"
                   href="#"
+                  //onClick moves to editor view and passes the note the user wants to edit along with the index of the note.
                   onClick={() =>
-                    navigate("/editor", { state: { note: note, index: index } })
+                    navigate("/editor", { state: { note: note, index: index } }) 
                   }
                 >
                   Edit

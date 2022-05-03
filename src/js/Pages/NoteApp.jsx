@@ -28,7 +28,7 @@ export const NoteApp = () => {
             <div className="notes-header-content py-3 px-3 d-flex justify-content-between">
               <div className="d-flex">
                 <button className="btn btn-primary btn-sidebar me-2" onClick={()=> {
-                  actions.setShowNav();
+                  actions.setShowNav(); //show/hide collapsed nav.
                 }}><BiMenu /></button>
                 <h3>Notes</h3>
               </div>
