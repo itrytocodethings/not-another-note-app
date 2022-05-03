@@ -162,7 +162,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         let store = getStore();
         setStore({showNav: store.showNav ? false : true});
       },
-      newNote: (userID, title, body=`Hello world`) => {
+      editTitle: (noteIndex, updatedTitle) => {
+        let notes = getStore().notes;
+        notes[noteIndex].title = updatedTitle;
+        setStore({notes: notes})
+      },
+      newNote: (title, body=`Hello world`) => {
         let store = getStore();
         let notes = store.notes
         notes.push({

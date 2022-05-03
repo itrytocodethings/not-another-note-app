@@ -1,8 +1,24 @@
-import React from "react";
+import React, {useContext, useRef} from "react";
 import "../../assets/css/notecard.css";
 import { HiDotsVertical } from "react-icons/hi";
+import { Context } from "../store/Context";
+import { useNavigate } from "react-router-dom";
 
 const NotesCard = ({ note, index }) => {
+  const {actions} = useContext(Context);
+  const cardTitle = useRef(null);
+  const navigate = useNavigate();
+  /* 
+    function to check length of cardTitle. The card title is not a normal 
+    input element, it's a H5 with contentEditable, so there isn't a maxLength attribute. 
+  */
+  const checkTextLengh = (e) => {
+    const max = 12;
+    if (cardTitle.current.innerText.length >= max && e.code != 'Backspace') {
+      e.preventDefault();
+    }
+  }
+
   return (
     <div className="col-12 col-md-4">
       <div class="card note-card text-center">
@@ -19,9 +35,9 @@ const NotesCard = ({ note, index }) => {
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" href="#">
+                <button class="dropdown-item" href="#" onClick={() => navigate('/editor', {state:note})}>
                   Edit
-                </a>
+                </button>
               </li>
               <li>
                 <a class="dropdown-item" href="#">
@@ -30,11 +46,14 @@ const NotesCard = ({ note, index }) => {
               </li>
             </ul>
           </div>
-          {/* <div><button className="btn btn-primary note-card-menu"><HiDotsVertical /></button></div> */}
           <h5
             class="card-title"
             contentEditable
-            onBlur={() => console.log("done editing the title")}
+            ref={cardTitle}
+            onKeyDown={(e) => checkTextLengh(e)}
+            onBlur={() => {
+              actions.editTitle(index, cardTitle.current.innerText); //update title on unFocus
+            }}
           >
             {note.title}
           </h5>
