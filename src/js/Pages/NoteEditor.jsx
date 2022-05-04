@@ -22,8 +22,8 @@ const NoteEditor = (props) => {
   const loc = useLocation();
   const note = loc.state.note;
   //using ref because useState doesn't work with ContentEditable package. per docs use 'useRef' instead.
-  const text = useRef(note.body);
-  let textMD = useRef(marked.parse(text.current));
+  const text = useRef(note.plainText);
+  let textMD = useRef(note.body);
   const editor = useRef(null);
   const [showMD, setShowMD] = useState(false);
 
@@ -70,16 +70,17 @@ const NoteEditor = (props) => {
                 disabled={!showMD ? false : true}
                 onChange={(e) => {
                   //sets text ref .current with what is input into the editor.
-                  text.current = e.target.value;
+                  text.current = editor.current.innerText;
+                  console.log(text.current, 'text.current')
                   //used editor ref to get innerText from editor so markdown would format correctly, innerText not defined on ContentEditable package component.
-                  textMD.current = marked.parse(editor.current.innerText);
+                  textMD.current = marked.parse(text.current);
+                  console.log(textMD.current, 'textMD.current')
                 }}
                 onBlur={(e) => {
                   //when the editor is unFocus
                   //using innerText to get value without HTML tags.
-                  text.current;
                   let plainText = e.target.innerText;
-                  actions.saveNote(loc.state.index, text.current, plainText);
+                  actions.saveNote(loc.state.index, textMD.current, plainText);
                 }}
               />
             </div>

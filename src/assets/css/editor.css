@@ -35,8 +35,14 @@
   min-height: 90vh;
   border: 1px solid lightgray;
   border-radius: 5px;
+  white-space: pre-wrap !important;
 }
 
 .editor.edit-field:focus-visible{
   outline: none;
+}
+
+.editor.editor.edit-field button {
+  background-color: blue;
+  color: white;
 }
