@@ -21,13 +21,16 @@ const NoteEditor = (props) => {
   const { store, actions } = useContext(Context);
   const loc = useLocation();
   const note = loc.state.note;
-  //using ref because useState doesn't work with ContentEditable package. per docs use 'useRef' instead.
+  //using ref because using state with onInput contentEditable div does not play nice.
   const text = useRef(note.body);
-  let textMD = useRef(note.body);
   const editor = useRef(null);
+  //state to determine if the editor is in edit mode or the showMD (show markdown) mode. 
   const [showMD, setShowMD] = useState(false);
 
   useEffect(() => {
+    /* 
+      when showMD changes the innerHTML of the editor element should reflect the raw user input (text.current). if ShowMD true display the parsed markdown for preview.
+    */
     !showMD ? editor.current.innerHTML = text.current : editor.current.innerHTML = marked.parse(editor.current.innerText);
   },[showMD])
 
@@ -68,15 +71,12 @@ const NoteEditor = (props) => {
           <div className="editor container-fluid">
             <div className="editor-content py-3">
               <div className="editor edit-field" ref={editor} contentEditable={!showMD ? true : false} onInput={(e) => {
-                console.log(e)
-                console.log(e.target.innerHTML)
                 text.current=e.target.innerHTML;
-                console.log(e.target.innerHTML);
               }} onBlur={(e) => {
                 let plainText = editor.current.innerText;
                 actions.saveNote(loc.state.index, text.current, plainText)
-                console.log(text.current)
-                console.log(marked.parse(plainText))
+                // console.log(text.current, 'actual html')
+                // console.log(marked.parse(plainText), 'plainText')
               }}>
 
               </div>

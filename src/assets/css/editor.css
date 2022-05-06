@@ -35,7 +35,7 @@
   min-height: 90vh;
   border: 1px solid lightgray;
   border-radius: 5px;
-  /* white-space: pre-wrap !important; */
+  white-space: pre-wrap !important;
 }
 
 .editor.edit-field:focus-visible{
