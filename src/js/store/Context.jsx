@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         {
           id: 1,
           title: "🤔 Title me",
-          body: `Hello 🌎`,
+          body: `Hello 🌎 `,
           plainText: `Hello 🌎`
         },
       ],

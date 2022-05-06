@@ -22,10 +22,14 @@ const NoteEditor = (props) => {
   const loc = useLocation();
   const note = loc.state.note;
   //using ref because useState doesn't work with ContentEditable package. per docs use 'useRef' instead.
-  const text = useRef(note.plainText);
+  const text = useRef(note.body);
   let textMD = useRef(note.body);
   const editor = useRef(null);
   const [showMD, setShowMD] = useState(false);
+
+  useEffect(() => {
+    !showMD ? editor.current.innerHTML = text.current : editor.current.innerHTML = marked.parse(editor.current.innerText);
+  },[showMD])
 
   return (
     <div className="editor-container">
@@ -63,26 +67,19 @@ const NoteEditor = (props) => {
           </header>
           <div className="editor container-fluid">
             <div className="editor-content py-3">
-              <ContentEditable
-                innerRef={editor}
-                className="editor edit-field px-2"
-                html={!showMD ? text.current : textMD.current}
-                disabled={!showMD ? false : true}
-                onChange={(e) => {
-                  //sets text ref .current with what is input into the editor.
-                  text.current = editor.current.innerText;
-                  console.log(text.current, 'text.current')
-                  //used editor ref to get innerText from editor so markdown would format correctly, innerText not defined on ContentEditable package component.
-                  textMD.current = marked.parse(text.current);
-                  console.log(textMD.current, 'textMD.current')
-                }}
-                onBlur={(e) => {
-                  //when the editor is unFocus
-                  //using innerText to get value without HTML tags.
-                  let plainText = e.target.innerText;
-                  actions.saveNote(loc.state.index, textMD.current, plainText);
-                }}
-              />
+              <div className="editor edit-field" ref={editor} contentEditable={!showMD ? true : false} onInput={(e) => {
+                console.log(e)
+                console.log(e.target.innerHTML)
+                text.current=e.target.innerHTML;
+                console.log(e.target.innerHTML);
+              }} onBlur={(e) => {
+                let plainText = editor.current.innerText;
+                actions.saveNote(loc.state.index, text.current, plainText)
+                console.log(text.current)
+                console.log(marked.parse(plainText))
+              }}>
+
+              </div>
             </div>
           </div>
         </MainContent>
