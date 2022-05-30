@@ -18,10 +18,10 @@ export const NoteApp = () => {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
     setNotes(store.notes);
-    fetch(`${import.meta.env.BACKEND_URL}/api`)
-    .then((response) =>
-      response.ok ? response.json() : "help"
-    )
+    // fetch(`${import.meta.env.BACKEND_URL}/api`)
+    // .then((response) =>
+    //   response.ok ? response.json() : "help"
+    // )
   });
   return (
     <div className="app-container">

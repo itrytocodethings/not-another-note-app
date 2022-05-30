@@ -4,7 +4,7 @@ export const Context = createContext();
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      isLoggedIn: false,
+      isLoggedIn: true,
       notes: [
         {
           id: 1,

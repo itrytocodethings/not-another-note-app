@@ -11,7 +11,7 @@ const Layout = () => {
       <Routes>
         <Route path="/" element={<PrivateRoute><NoteApp /></PrivateRoute>}></Route>
         <Route path="/editor" element={<NoteEditor />}></Route>
-        <Route path="/register" element={<RegisterLogin />}></Route>
+        <Route path="/account" element={<RegisterLogin />}></Route>
       </Routes>
     </BrowserRouter>
   )

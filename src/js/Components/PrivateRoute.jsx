@@ -7,7 +7,7 @@ const PrivateRoute = ({children}) => {
   const navigate = useNavigate();
   //if no user logged in, redirect user to register/login wtih Navigate.
   // else return the child component of the PrivateRoute
-  if (!store.isLoggedIn) return <Navigate to="/register" />
+  if (!store.isLoggedIn) return <Navigate to="/account" />
   else return children 
 }
 
