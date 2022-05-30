@@ -1,6 +1,6 @@
 // react utils
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Context } from "../store/Context";
 
 // assets
@@ -8,22 +8,53 @@ import "../../assets/css/register.css";
 import notesImg from "../../assets/img/notes.png";
 
 const RegisterLogin = () => {
-  const {store, actions} = useContext(Context)
-  // is the user loggin in instead? if true will render page as login.
-  const[isLogin, setIsLogin] = useState(true);
+  const { store, actions } = useContext(Context);
 
-  const [regFormValues, setRegFormValues] = useState({});
+  // is the user loggin in instead? if true will render page as login.
+  const [isLogin, setIsLogin] = useState(true);
+
+  // used to display any errors during register/login
+  const [error, setError] = useState("");
+
+  const defaultFormValues = {
+    username: "",
+    password: "",
+    email: ""
+  }
+
+  const [regFormValues, setRegFormValues] = useState(defaultFormValues);
+
+  const navigate = useNavigate();
 
   // handleInput function for the controlled inputs
   const handleInput = (e) => {
-    setRegFormValues({...regFormValues,[e.target.name]: e.target.value})
+    setError('')
+    setRegFormValues({ ...regFormValues, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) actions.login(regFormValues)
-  }
-  return (
+    if (isLogin) {
+      // if isLogin we are going to login
+      await actions.login(regFormValues);
+      navigate("/");
+    } else {
+      //register
+      /* 
+        if reponse is not null (returned from the actions.register method), there 
+        was an issue during registration and will display returned error response from api.
+        For exaple: username already taken.
+      */
+      let response = await actions.register(regFormValues);
+      if (response != null) setError(response)
+      else {
+        setRegFormValues(defaultFormValues);
+        setIsLogin(true);
+      }
+    }
+  };
+  // return login/register page if there is no user info stored in localStorage
+  return !localStorage.getItem("userID") ? (
     <>
       <section id="register">
         <div className="container-fluid p-0">
@@ -44,10 +75,16 @@ const RegisterLogin = () => {
                         SimpleNote
                       </a>
                     </small>
+                    <div class={`alert alert-danger ${error ? 'd-block' : 'd-none'}`} role="alert">
+                      {error}
+                    </div>
                     <div className="form">
                       <form className="px-sm-5">
                         <div>
-                          <label className="form-label" htmlFor="username"></label>
+                          <label
+                            className="form-label"
+                            htmlFor="username"
+                          ></label>
                           <input
                             className="form-control"
                             type="text"
@@ -55,22 +92,25 @@ const RegisterLogin = () => {
                             name="username"
                             placeholder="Username"
                             onChange={(e) => handleInput(e)}
-                            value={regFormValues['username']}
+                            value={regFormValues["username"]}
                           />
                         </div>
                         <div>
-                          <label className="form-label" htmlFor="password"></label>
+                          <label
+                            className="form-label"
+                            htmlFor="password"
+                          ></label>
                           <input
                             className="form-control"
                             type="password"
                             id="password"
                             name="password"
                             placeholder="Password"
-                            value={regFormValues['password']}
+                            value={regFormValues["password"]}
                             onChange={(e) => handleInput(e)}
                           />
                         </div>
-                        <div className={`${isLogin ? 'd-none': 'd-block'}`}>
+                        <div className={`${isLogin ? "d-none" : "d-block"}`}>
                           <label className="form-label" htmlFor="email"></label>
                           <input
                             className="form-control"
@@ -78,17 +118,27 @@ const RegisterLogin = () => {
                             id="email"
                             name="email"
                             placeholder="hello@world.com"
-                            value={regFormValues['email']}
+                            value={regFormValues["email"]}
                             onChange={(e) => handleInput(e)}
                           />
                         </div>
                         <div className="d-flex flex-column justify-content-center align-items-center">
-                        <button className="btn btn-primary btn-sm mb-3 isLogin-toggle mt-3" onClick={(e)=> {
-                          e.preventDefault();
-                          !isLogin ? setIsLogin(true) : setIsLogin(false)
-                        }}>{!isLogin ? 'Already Registered?' : 'Need to register?'}</button>
-                          <button className="btn btn-primary w-50" onClick={(e) => handleSubmit(e)}>
-                            {isLogin ? 'Login' : 'Register'}
+                          <button
+                            className="btn btn-primary w-50 mt-3"
+                            onClick={(e) => handleSubmit(e)}
+                          >
+                            {isLogin ? "Login" : "Register"}
+                          </button>
+                          <button
+                            className="btn btn-primary btn-sm mb-3 isLogin-toggle mt-3"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              !isLogin ? setIsLogin(true) : setIsLogin(false);
+                            }}
+                          >
+                            {!isLogin
+                              ? "Already Registered?"
+                              : "Need to register?"}
                           </button>
                         </div>
                       </form>
@@ -101,6 +151,8 @@ const RegisterLogin = () => {
         </div>
       </section>
     </>
+  ) : (
+    <Navigate to="/" />
   );
 };
 

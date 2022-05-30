@@ -17,12 +17,8 @@ export const NoteApp = () => {
   const { store, actions } = useContext(Context);
   const [notes, setNotes] = useState([]);
   useEffect(() => {
-    setNotes(store.notes);
-    // fetch(`${import.meta.env.BACKEND_URL}/api`)
-    // .then((response) =>
-    //   response.ok ? response.json() : "help"
-    // )
-  });
+    setNotes(store.user ? store.user.notes : []);
+  },[store.user]);
   return (
     <div className="app-container">
       <div className="content d-flex">
