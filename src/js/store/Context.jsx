@@ -32,6 +32,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ user: resp["user"] });
           });
       },
+      logout: () => {
+        localStorage.clear();
+      },
       register: async (formData) => {
         let response = null;
         await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/register`, {
