@@ -1,0 +1,61 @@
+/* div.container-fluid {
+  max-width: 2000px;
+} */
+div.reg-content-left,
+div.reg-content-right{
+  /* border-radius: 0px 10px 10px 0px; */
+  background-color: #2f2035;
+  min-height: 100vh;
+  padding: 15px;
+}
+
+div.reg-content-right h1 {
+  color: #2f2035 !important;
+}
+
+@media (max-width: 766px) {
+  div.reg-content-left{
+    min-height: 0;
+    height: 35vh;
+  }
+
+  div.reg-content-left img {
+    max-height: 100% !important;
+  }
+}
+
+div.reg-content-right {
+  background-color: inherit;
+  padding: 0 70px 0 70px;
+  border-left: 2px solid lightgray;
+}
+
+div.reg-content-right small {
+  color: rgba(136, 136, 136, 0.5)
+}
+
+div.reg-content-right small a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 766px) {
+  div.reg-content-right{
+    border: none;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    /* margin-top: 30px; */
+    min-height: 70vh;
+  }
+}
+
+.form .btn-primary {
+  background-color: #2f2035;
+  border: none;
+}
+
+.form button.btn-primary.isLogin-toggle {
+  background-color: transparent !important;
+  color: #2f2035;
+}

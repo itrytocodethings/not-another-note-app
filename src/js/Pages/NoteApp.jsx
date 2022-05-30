@@ -18,21 +18,35 @@ export const NoteApp = () => {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
     setNotes(store.notes);
+    fetch(`${import.meta.env.BACKEND_URL}/api`)
+    .then((response) =>
+      response.ok ? response.json() : "help"
+    )
   });
   return (
     <div className="app-container">
       <div className="content d-flex">
-        <SideBar/>
+        <SideBar />
         <MainContent>
           <header className="notes-header">
             <div className="notes-header-content py-3 px-3 d-flex justify-content-between">
               <div className="d-flex">
-                <button className="btn btn-primary btn-sidebar me-2" onClick={()=> {
-                  actions.setShowNav(); //show/hide collapsed nav.
-                }}><BiMenu /></button>
+                <button
+                  className="btn btn-primary btn-sidebar me-2"
+                  onClick={() => {
+                    actions.setShowNav(); //show/hide collapsed nav.
+                  }}
+                >
+                  <BiMenu />
+                </button>
                 <h3>Notes</h3>
               </div>
-              <button className="btn btn-primary" onClick={() => {actions.newNote()}}>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  actions.newNote();
+                }}
+              >
                 <BsFilePlus />
               </button>
             </div>
@@ -42,7 +56,11 @@ export const NoteApp = () => {
               <div className="row gx-4 gy-4">
                 {notes
                   ? notes.length > 0
-                    ? notes.map((note, index) => <NotesCard note={note} index={index} />).reverse()
+                    ? notes
+                        .map((note, index) => (
+                          <NotesCard note={note} index={index} />
+                        ))
+                        .reverse()
                     : "You have no notes"
                   : null}
               </div>
