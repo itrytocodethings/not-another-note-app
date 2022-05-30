@@ -8,8 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 
-dist/*
-!dist/_redirects
+dist
 node_modules
 dist-ssr
 *.local
