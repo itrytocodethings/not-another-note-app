@@ -11,6 +11,16 @@ body {
   font-weight: 400;
 }
 
+button.btn-primary {
+  background-color: #2f2035 !important;
+  border: none !important;
+  color: #fdfdfd !important;
+}
+
+button.btn-primary:focus {
+  box-shadow: none !important;
+}
+
 aside.sidebar {
   visibility: hidden;
   position: absolute;

@@ -29,11 +29,12 @@ const RegisterLogin = () => {
   // handleInput function for the controlled inputs
   const handleInput = (e) => {
     setError('')
-    setRegFormValues({ ...regFormValues, [e.target.name]: e.target.value });
+    setRegFormValues({...regFormValues, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(regFormValues)
     if (isLogin) {
       // if isLogin we are going to login
       await actions.login(regFormValues);

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState, useRef} from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 
 import { BiHomeSmile } from "react-icons/bi";
 import { CgNotes, CgHome } from "react-icons/cg";
@@ -13,6 +13,7 @@ import { Context } from "../store/Context";
 const SideBar = (props) => {
   const {store, actions} = useContext(Context);
   const sideBarRef = useRef(null);
+  const navigate = useNavigate()
   const closeNav = () => {
     actions.setShowNav();
   }
@@ -24,7 +25,7 @@ const SideBar = (props) => {
         <aside className={`sidebar ${store.showNav ? 'show' : ''}`} ref={sideBarRef}>
       <header className="sidebar-header">
         <div className="sidebar-header-content px-3 py-3">
-          <h3>Hello, World</h3>
+          <h3>Hello, {store.user ? store.user.username : ''}</h3>
         </div>
       </header>
       <div className="container-fluid">
@@ -35,10 +36,6 @@ const SideBar = (props) => {
                 <CgNotes />
                 <span>Notes</span>
               </NavLink>
-              {/* <NavLink to="/editor" className="nav-link">
-                <CgNotes />
-                <span>Editor</span>
-              </NavLink> */}
             </nav>
           </div>
           <div className="user">
@@ -50,11 +47,12 @@ const SideBar = (props) => {
               <p>Profile</p>
               </div>
               <div className="d-flex align-items-center">
-                <a href="" className="btn btn-primary" onClick={() => {
+                <button href="" className="btn btn-primary" id="logout" onClick={() => {
                   actions.logout();
+                  navigate("/")
                 }}>
                   <FiLogOut />
-                </a>
+                </button>
               </div>
             </div>
           </div>

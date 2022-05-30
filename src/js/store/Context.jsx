@@ -59,7 +59,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         return response;
       },
       getUser: async (userID) => {
-        console.log(localStorage.getItem("token"));
         await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/u`, {
           headers: {
             "Content-Type": "application/json",

@@ -27,11 +27,11 @@ const NotesCard = ({ note, index }) => {
 
   return (
     <div className="col-12 col-md-4">
-      <div class="card note-card text-center">
-        <div class="card-body position-relative">
-          <div class="dropdown note-card-menu dropstart">
+      <div className="card note-card text-center">
+        <div className="card-body position-relative">
+          <div className="dropdown note-card-menu dropstart">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -39,10 +39,10 @@ const NotesCard = ({ note, index }) => {
             >
               <HiDotsVertical />
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
                 <button
-                  class="dropdown-item"
+                  className="dropdown-item"
                   href="#"
                   //onClick moves to editor view and passes the note the user wants to edit along with the index of the note.
                   onClick={() =>
@@ -54,7 +54,7 @@ const NotesCard = ({ note, index }) => {
               </li>
               <li>
               <button
-                  class="dropdown-item"
+                  className="dropdown-item"
                   href="#"
                   //onClick moves to editor view and passes the note the user wants to edit along with the index of the note.
                   onClick={() => actions.deleteNote(index)}
@@ -65,7 +65,7 @@ const NotesCard = ({ note, index }) => {
             </ul>
           </div>
           <h5
-            class="card-title"
+            className="card-title"
             contentEditable
             ref={cardTitle}
             onKeyDown={(e) => checkTextLengh(e)}
@@ -75,7 +75,7 @@ const NotesCard = ({ note, index }) => {
           >
             {note.title}
           </h5>
-          <p class="card-text">{note.plainText}</p>
+          <p className="card-text">{note.plainText}</p>
         </div>
       </div>
     </div>
