@@ -85,16 +85,28 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         setStore({ notes: notes });
       },
-      newNote: (title = `🤔 Title me`, body = `Hello 🌎`) => {
+      newNote: (title = `🤔 Title me`, body = `Hello 🌎`, plainText='Hello 🌎') => {
         let store = getStore();
-        let notes = store.notes;
-        notes.push({
-          id: notes.length + 1,
-          title: title,
-          body: body,
-          plainText: body,
-        });
-        setStore({ notes: notes });
+        let notes = store.user.notes;
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/note`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+          },
+          body: JSON.stringify({
+            note_title: title,
+            note_body: body,
+            note_plain_text: plainText
+          })
+        })
+        .then((resp) => {
+          if (resp.ok) return resp.json()
+          else throw Error("help")
+        })
+        .then((resp) => {
+          setStore({user:{notes: resp}});
+        })
       },
     },
   };
@@ -116,7 +128,6 @@ export const ContextWrapper = (props) => {
   useEffect(() => {
     if (localStorage.getItem("userID")) {
       let id = localStorage.getItem("userID");
-      console.log(typeof id);
       state.actions.getUser(parseInt(id));
     }
   }, []);
