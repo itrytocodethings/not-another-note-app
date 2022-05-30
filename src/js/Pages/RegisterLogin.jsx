@@ -1,14 +1,16 @@
 // react utils
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/Context";
 
 // assets
 import "../../assets/css/register.css";
 import notesImg from "../../assets/img/notes.png";
 
 const RegisterLogin = () => {
+  const {store, actions} = useContext(Context)
   // is the user loggin in instead? if true will render page as login.
-  const[isLogin, setIsLogin] = useState(false);
+  const[isLogin, setIsLogin] = useState(true);
 
   const [regFormValues, setRegFormValues] = useState({});
 
@@ -16,6 +18,11 @@ const RegisterLogin = () => {
   const handleInput = (e) => {
     setRegFormValues({...regFormValues,[e.target.name]: e.target.value})
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isLogin) actions.login(regFormValues)
+  }
   return (
     <>
       <section id="register">
@@ -63,7 +70,7 @@ const RegisterLogin = () => {
                             onChange={(e) => handleInput(e)}
                           />
                         </div>
-                        <div className="mb-3">
+                        <div className={`${isLogin ? 'd-none': 'd-block'}`}>
                           <label className="form-label" htmlFor="email"></label>
                           <input
                             className="form-control"
@@ -76,8 +83,11 @@ const RegisterLogin = () => {
                           />
                         </div>
                         <div className="d-flex flex-column justify-content-center align-items-center">
-                        <button className="btn btn-primary btn-sm mb-3 isLogin-toggle">Already Registered?</button>
-                          <button className="btn btn-primary w-50">
+                        <button className="btn btn-primary btn-sm mb-3 isLogin-toggle mt-3" onClick={(e)=> {
+                          e.preventDefault();
+                          !isLogin ? setIsLogin(true) : setIsLogin(false)
+                        }}>{!isLogin ? 'Already Registered?' : 'Need to register?'}</button>
+                          <button className="btn btn-primary w-50" onClick={(e) => handleSubmit(e)}>
                             {isLogin ? 'Login' : 'Register'}
                           </button>
                         </div>

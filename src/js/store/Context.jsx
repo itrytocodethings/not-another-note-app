@@ -4,7 +4,8 @@ export const Context = createContext();
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      isLoggedIn: true,
+      User: null,
+      isLoggedIn: false,
       notes: [
         {
           id: 1,
@@ -19,6 +20,21 @@ const getState = ({ getStore, getActions, setStore }) => {
       setShowNav: () => {
         let store = getStore();
         setStore({showNav: store.showNav ? false : true});
+      },
+      login: async (formData) => {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({...formData})
+        }).then((resp) => {
+          if (resp.ok) return resp.json()
+          else throw new Error()
+        })
+        .then((resp) => {
+          console.log(resp)
+        })
       },
       editTitle: (noteIndex, updatedTitle) => {
         let notes = getStore().notes;
