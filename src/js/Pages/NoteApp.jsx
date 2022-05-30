@@ -54,7 +54,7 @@ export const NoteApp = () => {
                   ? notes.length > 0
                     ? notes
                         .map((note, index) => (
-                          <NotesCard key={note.id} note={note} index={index} />
+                          <NotesCard key={index} note={note} index={index} />
                         ))
                         .reverse()
                     : "You have no notes"

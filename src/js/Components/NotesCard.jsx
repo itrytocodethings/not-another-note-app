@@ -1,5 +1,5 @@
 //react utils
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //icons/styles/assests
@@ -13,6 +13,7 @@ import { Context } from "../store/Context";
 const NotesCard = ({ note, index }) => {
   const { actions } = useContext(Context);
   const cardTitle = useRef(null);
+  const [noteTitle, setNoteTitle] = useState(note.title)
   const navigate = useNavigate();
   /* 
     function to check length of cardTitle. The card title is not a normal 
@@ -24,6 +25,10 @@ const NotesCard = ({ note, index }) => {
       e.preventDefault();
     }
   };
+
+  const handleTitleChange = (e) => {
+    setNoteTitle(e.target.value);
+  }
 
   return (
     <div className="col-12 col-md-4">
@@ -46,7 +51,7 @@ const NotesCard = ({ note, index }) => {
                   href="#"
                   //onClick moves to editor view and passes the note the user wants to edit along with the index of the note.
                   onClick={() =>
-                    navigate("/editor", { state: { note: note, index: index } }) 
+                    navigate("/editor", { state: { note: note } }) 
                   }
                 >
                   Edit
@@ -64,7 +69,10 @@ const NotesCard = ({ note, index }) => {
               </li>
             </ul>
           </div>
-          <h5
+          <input id='title' className="form-control" type="text" maxLength={12} value={noteTitle} onChange={(e)=> {
+            handleTitleChange(e);
+          }}/>
+          {/* <h5
             className="card-title"
             contentEditable
             ref={cardTitle}
@@ -74,7 +82,7 @@ const NotesCard = ({ note, index }) => {
             }}
           >
             {note.title}
-          </h5>
+          </h5> */}
           <p className="card-text">{note.plainText}</p>
         </div>
       </div>
