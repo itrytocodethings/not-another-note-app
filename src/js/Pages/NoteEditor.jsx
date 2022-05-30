@@ -72,11 +72,12 @@ const NoteEditor = (props) => {
             <div className="editor-content py-3">
               <div className="editor edit-field" ref={editor} contentEditable={!showMD ? true : false} onInput={(e) => {
                 text.current=e.target.innerHTML;
+                console.log('on input')
               }} onBlur={(e) => {
+                console.log(editor.current.innerHTML, 'inner html')
+                console.log(editor.current.innerText, 'inner text')
                 let plainText = editor.current.innerText;
                 actions.saveNote(loc.state.index, text.current, plainText)
-                // console.log(text.current, 'actual html')
-                // console.log(marked.parse(plainText), 'plainText')
               }}>
 
               </div>

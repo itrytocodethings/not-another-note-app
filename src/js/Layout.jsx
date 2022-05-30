@@ -2,13 +2,16 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NoteApp } from "./Pages/NoteApp";
 import NoteEditor from "./Pages/NoteEditor";
+import RegisterLogin from "./Pages/RegisterLogin";
+import PrivateRoute from "./Components/PrivateRoute";
 
 const Layout = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<NoteApp />}></Route>
+        <Route path="/" element={<PrivateRoute><NoteApp /></PrivateRoute>}></Route>
         <Route path="/editor" element={<NoteEditor />}></Route>
+        <Route path="/register" element={<RegisterLogin />}></Route>
       </Routes>
     </BrowserRouter>
   )
