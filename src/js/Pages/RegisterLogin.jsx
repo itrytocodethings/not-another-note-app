@@ -17,8 +17,8 @@ const RegisterLogin = () => {
   const [error, setError] = useState("");
 
   const defaultFormValues = {
-    username: "",
-    password: "",
+    username: "demo",
+    password: "demo",
     email: ""
   }
 
@@ -34,9 +34,8 @@ const RegisterLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(regFormValues)
     if (isLogin) {
-      // if isLogin we are going to login
+      // if isLogin, attempt actions.login method.
       await actions.login(regFormValues);
       navigate("/");
     } else {
