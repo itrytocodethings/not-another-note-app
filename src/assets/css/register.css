@@ -57,5 +57,5 @@ div.reg-content-right small a {
 
 .form button.btn-primary.isLogin-toggle {
   background-color: transparent !important;
-  color: #2f2035;
+  color: #2f2035 !important;
 }
