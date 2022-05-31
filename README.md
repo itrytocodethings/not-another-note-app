@@ -9,7 +9,14 @@ Not another Note App is a simple note editor inspired by SimpleNote. Users can c
 
 Currently a work in progress.
 
+### Login/Register
 ![screenshot](https://github.com/itrytocodethings/not-another-note-app/blob/master/src/assets/img/screenshots/nana_login.PNG)
+
+### App Landing
 ![screenshot](https://github.com/itrytocodethings/not-another-note-app/blob/master/src/assets/img/screenshots/nana_app_landing.PNG)
+
+### Editor
 ![screenshot](https://github.com/itrytocodethings/not-another-note-app/blob/master/src/assets/img/screenshots/nana_editor_edit_mode.PNG)
+
+### Preview
 ![screenshot](https://github.com/itrytocodethings/not-another-note-app/blob/master/src/assets/img/screenshots/nana_editor_prev_mode.PNG)
