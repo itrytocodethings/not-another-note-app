@@ -70,7 +70,7 @@ const NoteEditor = (props) => {
           </header>
           <div className="editor container-fluid">
             <div className="editor-content py-3">
-              <div className="editor edit-field" ref={editor} contentEditable={!showMD ? true : false} onInput={(e) => {
+              <div className="editor edit-field p-2" ref={editor} contentEditable={!showMD ? true : false} onInput={(e) => {
                 text.current=e.target.innerHTML;
                 console.log('on input')
               }} onBlur={(e) => {
