@@ -15,16 +15,6 @@ const NotesCard = ({ note, index }) => {
   const cardTitle = useRef(null);
   const [noteTitle, setNoteTitle] = useState(note.title)
   const navigate = useNavigate();
-  /* 
-    function to check length of cardTitle. The card title is not a normal 
-    input element, it's a H5 with contentEditable, so there isn't a maxLength attribute. 
-  */
-  const checkTextLengh = (e) => {
-    const max = 12;
-    if (cardTitle.current.innerText.length >= max && e.code != "Backspace") {
-      e.preventDefault();
-    }
-  };
 
   const handleTitleChange = (e) => {
     setNoteTitle(e.target.value);
@@ -69,21 +59,13 @@ const NotesCard = ({ note, index }) => {
               </li>
             </ul>
           </div>
-          <input id='title' className="form-control" type="text" maxLength={12} value={noteTitle} onChange={(e)=> {
+          <input id='title' className="form-control" type="text" maxLength={20} value={noteTitle} onChange={(e)=> {
             handleTitleChange(e);
+          }} onBlur={(e) => {
+            // edit note title, note body can only be edited in edtior view.
+            actions.editNote(note.id, {note_title: noteTitle})
           }}/>
-          {/* <h5
-            className="card-title"
-            contentEditable
-            ref={cardTitle}
-            onKeyDown={(e) => checkTextLengh(e)}
-            onBlur={() => {
-              actions.editTitle(index, cardTitle.current.innerText); //update title on unFocus
-            }}
-          >
-            {note.title}
-          </h5> */}
-          <p className="card-text">{note.plainText}</p>
+          <p className="card-text">{note.plain_text}</p>
         </div>
       </div>
     </div>

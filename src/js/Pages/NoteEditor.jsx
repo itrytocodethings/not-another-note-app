@@ -77,7 +77,8 @@ const NoteEditor = (props) => {
                 console.log(editor.current.innerHTML, 'inner html')
                 console.log(editor.current.innerText, 'inner text')
                 let plainText = editor.current.innerText;
-                actions.saveNote(loc.state.index, text.current, plainText)
+                actions.editNote(note.id, {note_body: text.current, plain_text: editor.current.innerText})
+                // actions.saveNote(loc.state.index, text.current, plainText)
               }}>
 
               </div>

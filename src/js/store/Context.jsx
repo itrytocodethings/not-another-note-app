@@ -70,16 +70,26 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({user: resp})
           });
       },
-      editTitle: (noteIndex, updatedTitle) => {
-        let notes = getStore().notes;
-        notes[noteIndex].title = updatedTitle;
-        setStore({ notes: notes });
-      },
-      saveNote: (noteIndex, text, plainText = null) => {
-        let notes = getStore().notes;
-        notes[noteIndex].body = text;
-        if (plainText) notes[noteIndex].plainText = plainText; //plain text of note body without html tags.
-        setStore({ notes: notes });
+      editNote: (noteID, editedFields) => {
+        // accepets a noteID and an object of edited fields
+        // ex {note_title: 'new note title'}
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/note/${noteID}`,{
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+          },
+          body: JSON.stringify({...editedFields})
+        })
+        .then((resp) => {
+          if (resp.ok) return resp.json()
+          else throw Error('help')
+        })
+        .then((resp) => {
+          let store = getStore()
+          // setStore({user:{notes: resp}})
+          setStore({user:{...store.user, notes: resp}})
+        })
       },
       deleteNote: (noteIndex) => {
         let notes = getStore().notes.filter(
