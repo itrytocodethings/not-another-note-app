@@ -87,7 +87,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
         .then((resp) => {
           let store = getStore()
-          // setStore({user:{notes: resp}})
           setStore({user:{...store.user, notes: resp}})
         })
       },
@@ -117,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           else throw Error("help")
         })
         .then((resp) => {
-          setStore({user:{notes: resp}});
+          setStore({user:{...store.user, notes: resp}})
         })
       },
     },
