@@ -109,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             note_title: title,
             note_body: body,
-            note_plain_text: plainText
+            plain_text: plainText
           })
         })
         .then((resp) => {
