@@ -25,7 +25,7 @@ const SideBar = (props) => {
         <aside className={`sidebar ${store.showNav ? 'show' : ''}`} ref={sideBarRef}>
       <header className="sidebar-header">
         <div className="sidebar-header-content px-3 py-3">
-          <h3>Hello, {store.user ? store.user.username : ''}</h3>
+          <h3>Hello, {store.user ? `${store.user.username[0].toUpperCase()}${store.user.username.substring(1)}` : ''}</h3>
         </div>
       </header>
       <div className="container-fluid">

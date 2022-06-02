@@ -90,13 +90,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({user:{...store.user, notes: resp}})
         })
       },
-      deleteNote: (noteIndex) => {
-        let notes = getStore().notes.filter(
-          (note, index) => index != noteIndex
-        );
-        setStore({ notes: notes });
+      deleteNote: (noteID) => {
+        let store = getStore();
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/note/${noteID}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+          }
+        })
+        .then((resp) => {
+          if (resp.ok) return resp.json()
+        })
+        .then((resp) => {
+          setStore({user:{...store.user, notes: resp}})
+        })
       },
-      newNote: (title = `🤔 Title me`, body = `Hello 🌎`, plainText='Hello 🌎') => {
+      newNote: (title = `🤔 Change me`, body = `Hello 🌎`, plainText='Hello 🌎') => {
         let store = getStore();
         let notes = store.user.notes;
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/note`, {

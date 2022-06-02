@@ -80,7 +80,6 @@ const NoteEditor = (props) => {
                 actions.editNote(note.id, {note_body: text.current, plain_text: editor.current.innerText})
                 // actions.saveNote(loc.state.index, text.current, plainText)
               }}>
-
               </div>
             </div>
           </div>
