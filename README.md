@@ -6,7 +6,7 @@ Note app inspired by Simplenote.
 ---
 
 Not another Note App is a simple note editor inspired by SimpleNote. Users can create notes, format them with markdown, and preview their formatted notes.
- HTML/CSS/Javascript/React
+ HTML/CSS/Javascript/React/ViteJs
 
 ### Here is the [backend/api](https://github.com/itrytocodethings/nana-api)
 Python/Flask/JWT
